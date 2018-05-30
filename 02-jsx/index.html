@@ -11,12 +11,14 @@ const rootElement = document.getElementById('root')
 // })
 const myClassName = 'container'
 const content = 'Hello World'
+const props = {
+  className: 'container',
+  children: 'Hello World',
+}
 // In html we use class and in jsx we use className
 /* Inside the curly braces (interpolation) we are exiting jsxland an entering
 javascriptland and we can do all js we can as long as is evaluated to an expresion */
-const element = (
-  <div className={myClassName + '__hi-there'}>{(() => content)()}</div>
-)
+const element = <div {...props} />
 ReactDOM.render(element, rootElement)
 </script>
 </body>
