@@ -5,10 +5,11 @@
 <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
 const rootElement = document.getElementById('root')
+const helloWorld = <div>Hello World</div>
 const element = (
   <div className="my-container">
-    <div>Hello World</div>
-    <div>Hello World</div>
+    {helloWorld}
+    {helloWorld}
   </div>
 )
 ReactDOM.render(element, rootElement)
