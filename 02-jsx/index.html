@@ -9,7 +9,11 @@ const rootElement = document.getElementById('root')
 //   className: 'container',
 //   children: ['Hello World from React!', 'Goodbye'],
 // })
-const element = <div className="container">Hello World</div>
+const content = 'Hello World'
+// In html we use class and in jsx we use className
+/* Inside the curly braces (interpolation) we are in javascriptland and all we
+write is evaluated as js an interpolated as long as is evaluated to an expresion*/
+const element = <div className="container">{content}</div>
 ReactDOM.render(element, rootElement)
 </script>
 </body>
