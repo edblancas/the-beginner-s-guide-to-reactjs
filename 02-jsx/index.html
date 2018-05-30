@@ -19,7 +19,11 @@ const props = {
 /* Inside the curly braces (interpolation) we are exiting jsxland an entering
 javascriptland and we can do all js we can as long as is evaluated to an expresion */
 // To override put after the props spread.
-const element = <div {...props} className="my-container" children="Hello!" />
+const element = (
+  <div {...props} className="my-container">
+    Hi there!
+  </div>
+)
 ReactDOM.render(element, rootElement)
 </script>
 </body>
