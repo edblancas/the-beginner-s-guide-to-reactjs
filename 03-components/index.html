@@ -8,8 +8,8 @@ const rootElement = document.getElementById('root')
 const message = props => <div>{props.msg}</div>
 const element = (
   <div className="my-container">
-    {message({msg: 'Hello'})}
-    {message({msg: 'Goodbye'})}
+    {React.createElement(message, {msg: 'Hello'})}
+    {React.createElement(message, {msg: 'Goodbye'})}
   </div>
 )
 ReactDOM.render(element, rootElement)
