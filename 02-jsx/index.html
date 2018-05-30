@@ -18,7 +18,8 @@ const props = {
 // In html we use class and in jsx we use className
 /* Inside the curly braces (interpolation) we are exiting jsxland an entering
 javascriptland and we can do all js we can as long as is evaluated to an expresion */
-const element = <div {...props} />
+// To override put after the props spread.
+const element = <div {...props} className="my-container" children="Hello!" />
 ReactDOM.render(element, rootElement)
 </script>
 </body>
