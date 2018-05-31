@@ -5,11 +5,8 @@
 <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
 function Message({message}) {
-  if (!message) {
-    return React.createElement('div', null, 'No message')
-  }
-  return React.createElement('div', null, message)
+  return !message? React.createElement('div', null, 'No message') : React.createElement('div', null, message)
 }
-ReactDOM.render(<Message message={null} />, document.getElementById('root'))
+ReactDOM.render(<Message message="A message" />, document.getElementById('root'))
 </script>
 </body>
