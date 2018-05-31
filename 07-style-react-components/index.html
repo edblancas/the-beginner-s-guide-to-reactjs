@@ -22,10 +22,11 @@
 }
 </style>
 <script type="text/babel">
-function Box({className = '', style, ...rest}) {
+function Box({size, className = '', style, ...rest}) {
+  const sizeClassName = size ? `box--${size}` : ''
   return (
     <div
-      className={`box ${className}`}
+      className={`box ${sizeClassName}`}
       style={{paddingLeft: 20, ...style}}
       {...rest}
     />
@@ -33,13 +34,13 @@ function Box({className = '', style, ...rest}) {
 }
 const element = (
   <div>
-    <Box className="box--small" style={{backgroundColor: 'lightblue'}}>
+    <Box size="small" style={{backgroundColor: 'lightblue'}}>
       small box
     </Box>
-    <Box className="box--medium" style={{backgroundColor: 'pink'}}>
+    <Box size="medium" style={{backgroundColor: 'pink'}}>
       medium box
     </Box>
-    <Box className="box--large" style={{backgroundColor: 'orange'}}>
+    <Box size="large" style={{backgroundColor: 'orange'}}>
       large box
     </Box>
   </div>
