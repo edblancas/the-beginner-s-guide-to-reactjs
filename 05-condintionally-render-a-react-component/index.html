@@ -7,7 +7,7 @@
 function Message({message}) {
   return (
     <div>
-      {!message? React.createElement('div', null, 'No message') : React.createElement('div', null, message)}
+      {!message? <div>No message</div> : <div>{message}</div>}
     </div>
   )
 }
