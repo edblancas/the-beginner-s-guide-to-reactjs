@@ -14,13 +14,12 @@
 }
 </style>
 <script type="text/babel">
-const props = {
-  className: 'box box--small',
-  style: {paddingLeft: 20},
+function Box(props) {
+  return <div className="box box--small" style={{paddingLeft: 20}} {...props} />
 }
 const element = (
   <div>
-    <div {...props}>box</div>
+    <Box style={{backgroundColor: 'lightblue'}}>small box</Box>
   </div>
 )
 ReactDOM.render(element, document.getElementById('root'))
