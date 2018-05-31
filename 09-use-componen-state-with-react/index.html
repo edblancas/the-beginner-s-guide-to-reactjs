@@ -4,25 +4,30 @@
 <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <div id="root"></div>
 <script type="text/babel">
-function StopWatch() {
-  const buttonStyles = {
-    border: '1px solid #ccc',
-    background: '#fff',
-    fontSize: '2em',
-    padding: 15,
-    margin: 5,
-    width: 200,
+class StopWatch extends React.Component {
+  render() {
+    const {running, lapse} = this.props
+    const buttonStyles = {
+      border: '1px solid #ccc',
+      background: '#fff',
+      fontSize: '2em',
+      padding: 15,
+      margin: 5,
+      width: 200,
+    }
+    return (
+      <div style={{textAlign: 'center'}}>
+        <label style={{fontSize: '5em', display: 'block'}}>{lapse}ms</label>
+        <button style={buttonStyles}>{running ? 'Stop' : 'Start'}</button>
+        <button style={buttonStyles}>Clear</button>
+      </div>
+    )
   }
-
-  return (
-    <div style={{textAlign: 'center'}}>
-      <label style={{fontSize: '5em', display: 'block'}}>0ms</label>
-      <button style={buttonStyles}>Start</button>
-      <button style={buttonStyles}>Clear</button>
-    </div>
-  )
 }
 const element = <div />
-ReactDOM.render(<StopWatch />, document.getElementById('root'))
+ReactDOM.render(
+  <StopWatch running={true} lapse={100} />,
+  document.getElementById('root'),
+)
 </script>
 </body>
