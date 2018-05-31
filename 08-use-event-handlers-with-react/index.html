@@ -11,16 +11,22 @@ function App() {
     <div>
       <p>There have been {state.eventCount} events</p>
       <p>
-        <button onClick={() => setState({eventCount: state.eventCount + 1})}>
-          ⚛️
-        </button>
+        <button onClick={increment}>⚛️</button>
       </p>
       <p>You typed: {state.username}</p>
       <p>
-        <input />
+        <input onChange={updateUsername} />
       </p>
     </div>
   )
+}
+
+function increment() {
+  setState({eventCount: state.eventCount + 1})
+}
+
+function updateUsername(event) {
+  setState({username: event.target.value})
 }
 
 // setState({eventCount: 10, username: 'dan'})
