@@ -5,8 +5,9 @@
 <div id="root"></div>
 <script type="text/babel">
 class StopWatch extends React.Component {
+  state = {lapse: 0, running: true}
   render() {
-    const {running, lapse} = this.props
+    const {running, lapse} = this.state
     const buttonStyles = {
       border: '1px solid #ccc',
       background: '#fff',
