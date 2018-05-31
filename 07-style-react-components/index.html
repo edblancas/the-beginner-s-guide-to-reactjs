@@ -14,8 +14,14 @@
 }
 </style>
 <script type="text/babel">
-function Box(props) {
-  return <div className="box box--small" style={{paddingLeft: 20}} {...props} />
+function Box({style, ...rest}) {
+  return (
+    <div
+      className="box box--small"
+      style={{paddingLeft: 20, ...style}}
+      {...rest}
+    />
+  )
 }
 const element = (
   <div>
