@@ -3,10 +3,22 @@
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <div id="root"></div>
+<style>
+.box {
+  border: solid;
+  border-color: black;
+}
+.box--small {
+  width: 60px;
+  height: 60px;
+}
+</style>
 <script type="text/babel">
 const element = (
   <div>
-    <div style={{paddingLeft: '20px'}}>box</div>
+    <div className="box box--small" style={{paddingLeft: 20}}>
+      box
+    </div>
   </div>
 )
 ReactDOM.render(element, document.getElementById('root'))
