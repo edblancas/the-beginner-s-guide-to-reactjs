@@ -5,20 +5,21 @@
 <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
 <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
-function SayHello(props) {
-  return (
-    <div>
-      Hello {props.firstName} {props.lastName}!
-    </div>
-  )
+class SayHello extends React.Component {
+  static propTypes = {
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+  }
+  render() {
+    const {firstName, lastName} = this.props
+    return (
+      <div>
+        Hello {firstName} {lastName}!
+      </div>
+    )
+  }
 }
 
-SayHello.propTypes = {
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
-}
-
-// By default the properties absent are optional, so the validate does not run
 ReactDOM.render(<SayHello firstName={true} />, document.getElementById('root'))
 </script>
 </body>
