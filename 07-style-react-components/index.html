@@ -12,6 +12,14 @@
   width: 60px;
   height: 60px;
 }
+.box--medium {
+  width: 100px;
+  height: 100px;
+}
+.box--large {
+  width: 150px;
+  height: 150px;
+}
 </style>
 <script type="text/babel">
 function Box({className = '', style, ...rest}) {
@@ -25,7 +33,15 @@ function Box({className = '', style, ...rest}) {
 }
 const element = (
   <div>
-    <Box style={{backgroundColor: 'lightblue'}}>small box</Box>
+    <Box className="box--small" style={{backgroundColor: 'lightblue'}}>
+      small box
+    </Box>
+    <Box className="box--medium" style={{backgroundColor: 'pink'}}>
+      medium box
+    </Box>
+    <Box className="box--large" style={{backgroundColor: 'orange'}}>
+      large box
+    </Box>
   </div>
 )
 ReactDOM.render(element, document.getElementById('root'))
