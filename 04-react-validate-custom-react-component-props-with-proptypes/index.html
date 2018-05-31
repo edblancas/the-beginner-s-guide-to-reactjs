@@ -12,6 +12,19 @@ function SayHello(props) {
   )
 }
 
+SayHello.propTypes = {
+  // Here put a property key 'firstName' with a value the function firstName(...)
+  firstName(props, propName, componentName) {
+    if (typeof props[propName] !== 'string') {
+      return new Error(
+        `Hey, you should pass a string for ${propName} in ${componentName}, but you pass a ${typeof props[
+          propName
+        ]}!`,
+      )
+    }
+  },
+}
+
 ReactDOM.render(<SayHello firstName={true} />, document.getElementById('root'))
 </script>
 </body>
