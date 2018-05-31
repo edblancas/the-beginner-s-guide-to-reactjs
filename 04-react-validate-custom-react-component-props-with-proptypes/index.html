@@ -14,10 +14,11 @@ function SayHello(props) {
 }
 
 SayHello.propTypes = {
-  firstName: PropTypes.string,
-  lastName: PropTypes.string,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
 }
 
+// By default the properties absent are optional, so the validate does not run
 ReactDOM.render(<SayHello firstName={true} />, document.getElementById('root'))
 </script>
 </body>
