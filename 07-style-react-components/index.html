@@ -14,10 +14,10 @@
 }
 </style>
 <script type="text/babel">
-function Box({style, ...rest}) {
+function Box({className = '', style, ...rest}) {
   return (
     <div
-      className="box box--small"
+      className={`box ${className}`}
       style={{paddingLeft: 20, ...style}}
       {...rest}
     />
