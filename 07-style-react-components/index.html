@@ -14,11 +14,13 @@
 }
 </style>
 <script type="text/babel">
+const props = {
+  className: 'box box--small',
+  style: {paddingLeft: 20},
+}
 const element = (
   <div>
-    <div className="box box--small" style={{paddingLeft: 20}}>
-      box
-    </div>
+    <div {...props}>box</div>
   </div>
 )
 ReactDOM.render(element, document.getElementById('root'))
