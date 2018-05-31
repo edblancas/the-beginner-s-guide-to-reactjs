@@ -6,9 +6,9 @@
 <script type="text/babel">
 function Message({message}) {
   if (!message) {
-    return <div>No message</div>
+    return React.createElement('div', null, 'No message')
   }
-  return <div>{message}</div>
+  return React.createElement('div', null, message)
 }
 ReactDOM.render(<Message message={null} />, document.getElementById('root'))
 </script>
