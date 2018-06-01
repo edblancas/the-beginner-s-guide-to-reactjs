@@ -1,0 +1,45 @@
+<body>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+class NameForm extends React.Component {
+  handleSubmit = event => {
+    event.preventDefault()
+    const username = event.target.elements.username.value
+    const error = this.props.getErrorMessage(username)
+    if (error) {
+      alert(error)
+    } else {
+      alert('success!')
+    }
+  }
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input type="text" name="username" />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+    )
+  }
+}
+ReactDOM.render(
+  <NameForm
+    getErrorMessage={value => {
+      if (value.length < 3) {
+        return 'Must be more than 3 characters.'
+      }
+      if (!value.includes('s')) {
+        return 'Must include an s'
+      }
+      return null
+    }}
+  />,
+  document.getElementById('root'),
+)
+</script>
+</body>
