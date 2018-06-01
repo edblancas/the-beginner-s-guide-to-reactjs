@@ -2,6 +2,7 @@
 <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/vanilla-tilt@1.4.1/dist/vanilla-tilt.min.js"></script>
 <style>
 /*
 Taken from the vanilla-tilt.js demo site:
@@ -39,9 +40,16 @@ https://micku7zu.github.io/vanilla-tilt.js/index.html
 <script type="text/babel">
 class Tilt extends React.Component {
   componentDidMount() {
+    VanillaTilt.init(this.rootNode, {
+      max: 25,
+      speed: 400,
+      glare: true,
+      'max-glare': 0.5,
+    })
     console.log(this.rootNode)
   }
   render() {
+    // 1. Like this in here
     return (
       <div
         ref={node => {
@@ -58,6 +66,7 @@ class Tilt extends React.Component {
 }
 const element = (
   <div className="totally-centered">
+    {/* 1. If we put the ref in <Tilt> we get a reference to the instance */}
     <Tilt>
       <div className="totally-centered">vanilla-tilt.js</div>
     </Tilt>
