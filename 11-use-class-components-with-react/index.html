@@ -5,12 +5,8 @@
 <div id="root"></div>
 <script type="text/babel">
 class Counter extends React.Component {
-  constructor(...args) {
-    super(...args)
-    this.handleClick = this.handleClick.bind(this)
-  }
   state = {count: 0}
-  handleClick() {
+  handleClick = () => {
     this.setState(({count}) => ({count: count + 1}))
   }
   render() {
@@ -21,6 +17,6 @@ class Counter extends React.Component {
   }
 }
 
-ReactDOM.render(<Counter count={1} />, document.getElementById('root'))
+ReactDOM.render(<Counter />, document.getElementById('root'))
 </script>
 </body>
