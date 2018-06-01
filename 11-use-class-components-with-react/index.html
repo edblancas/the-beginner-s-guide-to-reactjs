@@ -5,6 +5,10 @@
 <div id="root"></div>
 <script type="text/babel">
 class Counter extends React.Component {
+  constructor(...args) {
+    super(...args)
+    this.handleClick = this.handleClick.bind(this)
+  }
   state = {count: 0}
   handleClick() {
     this.setState(({count}) => ({count: count + 1}))
@@ -13,9 +17,7 @@ class Counter extends React.Component {
     // Cuando se renderea  y se usa la funcion handleClick, el this dentro de
     // handleClick no referencia a nada, por eso da el error:
     // Uncaught TypeError: Cannot read property 'setState' of undefined
-    return (
-      <button onClick={this.handleClick.bind(this)}>{this.state.count}</button>
-    )
+    return <button onClick={this.handleClick}>{this.state.count}</button>
   }
 }
 
