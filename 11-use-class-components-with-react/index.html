@@ -1,0 +1,22 @@
+<body>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+class Counter extends React.Component {
+  state = {count: 0}
+  handleClick() {
+    this.setState(({count}) => ({count: count + 1}))
+  }
+  render() {
+    // Cuando se renderea  y se usa la funcion handleClick, el this dentro de
+    // handleClick no referencia a nada, por eso da el error:
+    // Uncaught TypeError: Cannot read property 'setState' of undefined
+    return <button onClick={this.handleClick}>{this.state.count}</button>
+  }
+}
+
+ReactDOM.render(<Counter count={1} />, document.getElementById('root'))
+</script>
+</body>
