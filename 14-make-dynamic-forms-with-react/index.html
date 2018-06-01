@@ -22,6 +22,11 @@ class NameForm extends React.Component {
       error: this.props.getErrorMessage(value),
     })
   }
+  componentDidMount() {
+    this.setState({
+      error: this.props.getErrorMessage(''),
+    })
+  }
   render() {
     const {error} = this.state
     return (
