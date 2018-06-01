@@ -7,9 +7,29 @@
 class StopWatch extends React.Component {
   state = {lapse: 0, running: false}
   handleRunclick = () => {
-    this.setState({lapse: 10, running: true})
+    this.setState(state => {
+      if (state.running) {
+        clearInterval(this.timer)
+      } else {
+        const startTime = Date.now() - this.state.lapse
+        this.timer = setInterval(() => {
+          this.setState({lapse: Date.now() - startTime})
+        })
+      }
+      /* 
+        Se puede hacer un refactor de los dos setState y a parte hay un setState
+       dentro de otro setState, pero da un warning la consola, entonces se hace 
+       un return del state y actualiza automaticamente.
+       
+       Warning: An update (setState, replaceState, or forceUpdate) was scheduled 
+       from inside an update function. Update functions should be pure, 
+       with zero side-effects. Consider using componentDidUpdate or a callback.
+       */
+      return {running: !state.running}
+    })
   }
   handleClearClick = () => {
+    clearInterval(this.timer)
     this.setState({lapse: 0, running: false})
   }
   render() {
