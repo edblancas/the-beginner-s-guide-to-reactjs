@@ -13,7 +13,9 @@ class Counter extends React.Component {
     // Cuando se renderea  y se usa la funcion handleClick, el this dentro de
     // handleClick no referencia a nada, por eso da el error:
     // Uncaught TypeError: Cannot read property 'setState' of undefined
-    return <button onClick={this.handleClick}>{this.state.count}</button>
+    return (
+      <button onClick={this.handleClick.bind(this)}>{this.state.count}</button>
+    )
   }
 }
 
