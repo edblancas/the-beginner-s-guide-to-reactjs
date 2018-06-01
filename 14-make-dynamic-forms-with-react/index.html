@@ -5,6 +5,7 @@
 <div id="root"></div>
 <script type="text/babel">
 class NameForm extends React.Component {
+  state = {error: null}
   handleSubmit = event => {
     event.preventDefault()
     const username = event.target.elements.username.value
@@ -15,14 +16,23 @@ class NameForm extends React.Component {
       alert('success!')
     }
   }
+  handleOnChange = event => {
+    const {value} = event.target
+    this.setState({
+      error: this.props.getErrorMessage(value),
+    })
+  }
   render() {
+    const {error} = this.state
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
           Name:
-          <input type="text" name="username" />
+          <input type="text" name="username" onChange={this.handleOnChange} />
         </label>
-        <button type="submit">Submit</button>
+        <button disabled={Boolean(error)} type="submit">
+          Submit
+        </button>
       </form>
     )
   }
