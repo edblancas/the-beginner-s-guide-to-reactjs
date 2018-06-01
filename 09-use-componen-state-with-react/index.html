@@ -5,7 +5,13 @@
 <div id="root"></div>
 <script type="text/babel">
 class StopWatch extends React.Component {
-  state = {lapse: 0, running: true}
+  state = {lapse: 0, running: false}
+  handleRunclick = () => {
+    this.setState({lapse: 10, running: true})
+  }
+  handleClearClick = () => {
+    this.setState({lapse: 0, running: false})
+  }
   render() {
     const {running, lapse} = this.state
     const buttonStyles = {
@@ -19,16 +25,17 @@ class StopWatch extends React.Component {
     return (
       <div style={{textAlign: 'center'}}>
         <label style={{fontSize: '5em', display: 'block'}}>{lapse}ms</label>
-        <button style={buttonStyles}>{running ? 'Stop' : 'Start'}</button>
-        <button style={buttonStyles}>Clear</button>
+        <button style={buttonStyles} onClick={this.handleRunclick}>
+          {running ? 'Stop' : 'Start'}
+        </button>
+        <button style={buttonStyles} onClick={this.handleClearClick}>
+          Clear
+        </button>
       </div>
     )
   }
 }
 const element = <div />
-ReactDOM.render(
-  <StopWatch running={true} lapse={100} />,
-  document.getElementById('root'),
-)
+ReactDOM.render(<StopWatch />, document.getElementById('root'))
 </script>
 </body>
