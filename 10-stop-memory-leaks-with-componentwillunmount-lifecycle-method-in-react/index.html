@@ -1,0 +1,67 @@
+<body>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+class StopWatch extends React.Component {
+  state = {lapse: 0, running: false}
+  handleRunclick = () => {
+    this.setState(state => {
+      if (state.running) {
+        clearInterval(this.timer)
+      } else {
+        const startTime = Date.now() - this.state.lapse
+        this.timer = setInterval(() => {
+          this.setState({lapse: Date.now() - startTime})
+        })
+      }
+      /* 
+        Se puede hacer un refactor de los dos setState y a parte hay un setState
+       dentro de otro setState, pero da un warning la consola, entonces se hace 
+       un return del state y actualiza automaticamente.
+       
+       Warning: An update (setState, replaceState, or forceUpdate) was scheduled 
+       from inside an update function. Update functions should be pure, 
+       with zero side-effects. Consider using componentDidUpdate or a callback.
+       */
+      return {running: !state.running}
+    })
+  }
+  handleClearClick = () => {
+    clearInterval(this.timer)
+    this.setState({lapse: 0, running: false})
+  }
+  // This cause if the we unmount the component and not clear the interval,
+  // the setInterval will continue to run the setState and will fail. Because
+  // setState can only set mounted components.
+  componentWillUnmount() {
+    clearInterval(this.timer)
+  }
+  render() {
+    const {running, lapse} = this.state
+    const buttonStyles = {
+      border: '1px solid #ccc',
+      background: '#fff',
+      fontSize: '2em',
+      padding: 15,
+      margin: 5,
+      width: 200,
+    }
+    return (
+      <div style={{textAlign: 'center'}}>
+        <label style={{fontSize: '5em', display: 'block'}}>{lapse}ms</label>
+        <button style={buttonStyles} onClick={this.handleRunclick}>
+          {running ? 'Stop' : 'Start'}
+        </button>
+        <button style={buttonStyles} onClick={this.handleClearClick}>
+          Clear
+        </button>
+      </div>
+    )
+  }
+}
+const element = <div />
+ReactDOM.render(<StopWatch />, document.getElementById('root'))
+</script>
+</body>
