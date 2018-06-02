@@ -5,7 +5,7 @@
 <div id="root"></div>
 <script type="text/babel">
 class NameForm extends React.Component {
-  state = {error: null}
+  state = {error: this.props.getErrorMessage('')}
   handleSubmit = event => {
     event.preventDefault()
     const username = event.target.elements.username.value
@@ -22,11 +22,6 @@ class NameForm extends React.Component {
       error: this.props.getErrorMessage(value),
     })
   }
-  componentDidMount() {
-    this.setState({
-      error: this.props.getErrorMessage(''),
-    })
-  }
   render() {
     const {error} = this.state
     return (
@@ -35,6 +30,7 @@ class NameForm extends React.Component {
           Name:
           <input type="text" name="username" onChange={this.handleOnChange} />
         </label>
+        {error ? <div style={{color: 'red'}}>{error}</div> : null}
         <button disabled={Boolean(error)} type="submit">
           Submit
         </button>
