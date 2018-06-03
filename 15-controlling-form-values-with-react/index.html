@@ -79,7 +79,13 @@ class MyFancyForm extends React.Component {
               multiple
               size={MyFancyForm.availableOptions.length}
               onChange={this.handleMultiSelectChange}
-            />
+            >
+              {MyFancyForm.availableOptions.map(optionValue => (
+                <option key={optionValue} value={optionValue}>
+                  {optionValue}
+                </option>
+              ))}
+            </select>
           </label>
         </div>
       </form>
