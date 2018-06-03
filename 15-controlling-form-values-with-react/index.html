@@ -17,11 +17,28 @@ class MyFancyForm extends React.Component {
   ]
 
   handleCommaSeparatedChange = event => {
-    this.setState({commaSeparated: 'dddd'})
+    const {value} = event.target
+    this.setState({
+      commaSeparated: value,
+      // with filter we filter the empty strings
+      multiline: value
+        .split(',')
+        .map(v => v.trim())
+        .filter(Boolean)
+        .join('\n'),
+    })
   }
 
   handleMultilineChange = event => {
-    console.log('handleMultilineChange')
+    const {value} = event.target
+    this.setState({
+      multiline: value,
+      commaSeparated: value
+        .split('\n')
+        .map(v => v.trim())
+        .filter(Boolean)
+        .join(','),
+    })
   }
 
   handleMultiSelectChange = event => {
