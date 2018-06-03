@@ -11,11 +11,15 @@ class App extends React.Component {
     {id: 'c', value: 'cherry'},
     {id: 'o', value: 'orange'},
     {id: 'p', value: 'pear'},
-    {id: 'p', value: 'peach'},
+    {id: 'e', value: 'peach'},
   ]
 
   render() {
-    return <div>{App.allItems.map(item => <div>{item.value}</div>)}</div>
+    return (
+      <div>
+        {App.allItems.map(item => <div key={item.id}>{item.value}</div>)}
+      </div>
+    )
   }
 }
 
