@@ -48,7 +48,13 @@ class MyFancyForm extends React.Component {
   }
 
   handleMultiSelectChange = event => {
-    console.log('handleMultiSelectChange')
+    // We added the Array.from because map is not a function of an HTML node list.
+    const allVals = Array.from(event.target.selectedOptions).map(o => o.value)
+    this.setState({
+      multiSelect: allVals,
+      commaSeparated: allVals.join(','),
+      multiline: allVals.join('\n'),
+    })
   }
 
   render() {
