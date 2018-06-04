@@ -3,6 +3,7 @@
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <div id="root"></div>
+<div id="focus-demo"></div>
 <script type="text/babel">
 class App extends React.Component {
   static allItems = [
@@ -55,5 +56,69 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))
+
+class FocusDemo extends React.Component {
+  state = {
+    items: [
+      {id: 'a', value: 'apple'},
+      {id: 'g', value: 'grape'},
+      {id: 'c', value: 'cherry'},
+      {id: 'o', value: 'orange'},
+      {id: 'p', value: 'pear'},
+    ],
+  }
+
+  componentDidMount() {
+    setInterval(this.randomizeItems, 1000)
+  }
+
+  randomizeItems = () => {
+    this.setState(({items}) => ({
+      items: shuffle(items),
+    }))
+  }
+
+  render() {
+    const {items} = this.state
+    return (
+      // All inside this is jxs
+      // Must contains the div root element cause adjacent jsx elemnts must be wrapped in an enclosing tag
+      <div>
+        <div>
+          <h1>Without key prop</h1>
+          {items.map(i => <input value={i.value} />)}
+        </div>
+        <div>
+          <h1>With index in the key prop</h1>
+          {items.map((i, index) => <input key={index} value={i.value} />)}
+        </div>
+        <div>
+          <h1>With an id in the key prop</h1>
+          {items.map(i => <input key={i.id} value={i.value} />)}
+        </div>
+      </div>
+    )
+  }
+}
+
+function shuffle(array) {
+  var arrayIndex = array.length - 1,
+    tempValue,
+    randomIndex
+
+  while (arrayIndex >= 0) {
+    randomIndex = Math.floor(Math.random() * arrayIndex)
+
+    tempValue = array[arrayIndex]
+    array[arrayIndex] = array[randomIndex]
+    array[randomIndex] = tempValue
+
+    arrayIndex -= 1
+  }
+
+  return array
+}
+
+ReactDOM.render(<FocusDemo />, document.getElementById('focus-demo'))
 </script>
 </body>
