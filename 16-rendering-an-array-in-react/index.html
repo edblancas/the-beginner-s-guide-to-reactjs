@@ -42,8 +42,8 @@ class App extends React.Component {
         >
           +
         </button>
-        {items.map(i => (
-          <div>
+        {items.map((i, index) => (
+          <div key={index}>
             {/* It must be an arrow function cause must be eveluated as an expression. */}
             <button onClick={() => this.removeItem(i)}>-</button>
             {i.value}: <input />
