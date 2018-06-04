@@ -6,7 +6,7 @@
 <div id="root"></div>
 <script type="text/babel">
 class UserCompany extends React.Component {
-  state = {company: undefined}
+  state = {company: undefined, loaded: false}
 
   componentDidMount() {
     const token = '2abf9d3a6299e8f815dd658271c0bd1d374c720a'
@@ -22,13 +22,13 @@ class UserCompany extends React.Component {
       },
       headers: {Authorization: `bearer ${token}`},
     }).then(response => {
-      this.setState({company: response.data.data.user.company})
+      this.setState({company: response.data.data.user.company, loaded: true})
     })
   }
 
   render() {
-    const {company} = this.state
-    return company || 'unknown'
+    const {company, loaded} = this.state
+    return loaded ? company || 'unknown' : '...'
   }
 }
 
