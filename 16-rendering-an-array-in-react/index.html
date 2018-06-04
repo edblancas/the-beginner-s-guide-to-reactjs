@@ -24,6 +24,14 @@ class App extends React.Component {
     }))
   }
 
+  removeItem = item => {
+    console.log(item)
+    this.setState(({items}) => ({
+      // Must include parenthesis cause setState recibe an object as an expression
+      items: items.filter(i => i !== item), // The item var is one of the state.items, thats why i !== item works, and eliminate the correct element of the array
+    }))
+  }
+
   render() {
     const {items} = this.state
     return (
@@ -34,7 +42,13 @@ class App extends React.Component {
         >
           +
         </button>
-        {items.map(i => <div>{i.value}</div>)}
+        {items.map(i => (
+          <div>
+            {/* It must be an arrow function cause must be eveluated as an expression. */}
+            <button onClick={() => this.removeItem(i)}>-</button>
+            {i.value}: <input />
+          </div>
+        ))}
       </div>
     )
   }
