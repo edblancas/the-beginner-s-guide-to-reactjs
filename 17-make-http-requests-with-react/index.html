@@ -6,7 +6,7 @@
 <div id="root"></div>
 <script type="text/babel">
 class UserCompany extends React.Component {
-  state = {company: undefined, loaded: false}
+  state = {company: undefined, loaded: false, error: null}
 
   componentDidMount() {
     const token = '2abf9d3a6299e8f815dd658271c0bd1d374c720a'
@@ -21,21 +21,32 @@ class UserCompany extends React.Component {
         }`,
       },
       headers: {Authorization: `bearer ${token}`},
-    }).then(response => {
-      this.setState({company: response.data.data.user.company, loaded: true})
-    })
+    }).then(
+      response => {
+        this.setState({company: response.data.data.user.company, loaded: true})
+      },
+      error => {
+        this.setState({error: error.message, loaded: true})
+      },
+    )
   }
 
   render() {
-    const {company, loaded} = this.state
-    return loaded ? company || 'unknown' : '...'
+    const {company, loaded, error} = this.state
+    return error ? (
+      <div style={{color: 'red'}}>{error}</div>
+    ) : loaded ? (
+      <div>{`@${username} works at ${company || 'unknown'}`}</div>
+    ) : (
+      '...'
+    )
   }
 }
 
-const username = 'kentcdodds'
+const username = 'edublancas'
 const element = (
   <div>
-    {`@${username} works at `} <UserCompany username={username} />
+    <UserCompany username={username} />
   </div>
 )
 
