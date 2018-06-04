@@ -11,13 +11,30 @@ class App extends React.Component {
     {id: 'c', value: 'cherry'},
     {id: 'o', value: 'orange'},
     {id: 'p', value: 'pear'},
-    {id: 'e', value: 'peach'},
   ]
 
+  state = {items: []}
+
+  addItem = () => {
+    this.setState(({items}) => ({
+      items: [
+        ...items, // items forn the previous state
+        App.allItems.find(i => !items.includes(i)), // Get the first atom that is not already in the state.items and add to the state.items
+      ],
+    }))
+  }
+
   render() {
+    const {items} = this.state
     return (
       <div>
-        {App.allItems.map(item => <div key={item.id}>{item.value}</div>)}
+        <button
+          disabled={items.length == App.allItems.length}
+          onClick={this.addItem}
+        >
+          +
+        </button>
+        {items.map(i => <div>{i.value}</div>)}
       </div>
     )
   }
